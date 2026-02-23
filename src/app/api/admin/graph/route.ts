@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
   }
 
   const edge = await prisma.contentGraph.create({
-    data: parsed.data,
+    data: parsed.data as any,
   });
 
   return NextResponse.json({ data: edge }, { status: 201 });

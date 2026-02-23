@@ -4,7 +4,7 @@ import { auth } from "@/lib/auth";
 import { z } from "zod";
 
 const lessonCreateSchema = z.object({
-  moduleId: z.string().cuid(),
+  moduleId: z.string().min(1),
   type: z.enum(["ARTICLE", "VIDEO", "SANDBOX", "QUIZ", "INTERACTIVE", "MEDIA"]).default("ARTICLE"),
   title: z.string().min(1).max(255),
   content: z.record(z.string(), z.unknown()).optional(),
@@ -58,7 +58,7 @@ export async function PATCH(
 
   const lesson = await prisma.lesson.update({
     where: { id },
-    data: parsed.data,
+    data: parsed.data as any,
   });
 
   return NextResponse.json({ data: lesson });

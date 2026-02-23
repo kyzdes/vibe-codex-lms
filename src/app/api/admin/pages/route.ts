@@ -63,7 +63,7 @@ export async function POST(req: NextRequest) {
   }
 
   const pageRecord = await prisma.page.create({
-    data: { ...data, slug },
+    data: { ...data, slug } as any,
   });
 
   return NextResponse.json({ data: pageRecord }, { status: 201 });

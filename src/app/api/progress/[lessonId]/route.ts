@@ -77,7 +77,7 @@ export async function POST(
         where: {
           userId_lessonId: { userId: session.user.id, lessonId },
         },
-        data: { answersData, score },
+        data: { answersData, score } as any,
       });
     }
 

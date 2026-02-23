@@ -80,7 +80,7 @@ export async function POST(req: NextRequest) {
       ...data,
       slug,
       estimatedHours: data.estimatedHours ?? null,
-    },
+    } as any,
   });
 
   return NextResponse.json({ data: course }, { status: 201 });

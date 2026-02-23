@@ -6,8 +6,8 @@ import { checkAchievements } from "@/services/achievements";
 import { z } from "zod";
 
 const commentSchema = z.object({
-  lessonId: z.string().cuid(),
-  parentId: z.string().cuid().optional().nullable(),
+  lessonId: z.string().min(1),
+  parentId: z.string().min(1).optional().nullable(),
   content: z.string().min(1).max(5000),
 });
 

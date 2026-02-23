@@ -63,7 +63,7 @@ export async function PATCH(
 
   const course = await prisma.course.update({
     where: { id },
-    data: parsed.data,
+    data: parsed.data as any,
   });
 
   return NextResponse.json({ data: course });

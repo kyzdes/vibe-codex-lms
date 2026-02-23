@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/lib/auth";
 import { z } from "zod";
 
 const moduleSchema = z.object({
-  courseId: z.string().cuid(),
+  courseId: z.string().min(1),
   title: z.string().min(1).max(255),
   orderIndex: z.number().int().min(0).default(0),
   unlockCondition: z.record(z.string(), z.unknown()).optional().nullable(),
@@ -38,16 +37,8 @@ export async function POST(
     parsed.data.orderIndex = (maxOrder?.orderIndex ?? -1) + 1;
   }
 
-  const { unlockCondition, ...rest } = parsed.data;
   const mod = await prisma.module.create({
-    data: {
-      ...rest,
-      unlockCondition: unlockCondition === null
-        ? Prisma.DbNull
-        : unlockCondition === undefined
-          ? undefined
-          : (unlockCondition as Prisma.InputJsonValue),
-    },
+    data: parsed.data as any,
   });
   return NextResponse.json({ data: mod }, { status: 201 });
 }
