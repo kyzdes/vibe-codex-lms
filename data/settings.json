@@ -1,0 +1,16 @@
+{
+  "ai": {
+    "evaluationModel": "anthropic/claude-sonnet-4-5-20250514",
+    "hintModel": "anthropic/claude-haiku-4-5-20251001",
+    "dailyBudgetPerUser": 0.50,
+    "rateLimitPerMinute": 20,
+    "systemPrompt": "Ты — обучающий помощник VibeLearn.\nПравила:\n1. Никогда не давай прямой ответ\n2. Используй метод Сократа — задавай наводящие вопросы\n3. Поощряй самостоятельное мышление\n4. Отвечай на русском языке\n5. Будь кратким и дружелюбным"
+  },
+  "gamification": {
+    "xpPerLesson": 10,
+    "bonusPerfectQuiz": 20,
+    "bonusSandboxHighScore": 15,
+    "streakBonus7Days": 50,
+    "streakBonus30Days": 200
+  }
+}

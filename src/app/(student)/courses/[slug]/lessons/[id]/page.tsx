@@ -10,6 +10,7 @@ import { ArrowLeft, ArrowRight, CheckCircle, Zap } from "lucide-react";
 import { toast } from "sonner";
 import { QuizPlayer } from "@/components/quiz/quiz-player";
 import { PromptSandbox } from "@/components/sandbox/prompt-sandbox";
+import { CommentSection } from "@/components/comments/comment-section";
 import type { QuizContent, SandboxContent, VideoContent } from "@/types";
 
 interface LessonData {
@@ -233,6 +234,9 @@ export default function LessonPage() {
           </Button>
         )}
       </div>
+
+      {/* Comments */}
+      <CommentSection lessonId={lesson.id} />
     </div>
   );
 }
