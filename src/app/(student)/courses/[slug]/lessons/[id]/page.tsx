@@ -10,6 +10,7 @@ import { ArrowLeft, ArrowRight, CheckCircle, Zap } from "lucide-react";
 import { toast } from "sonner";
 import { QuizPlayer } from "@/components/quiz/quiz-player";
 import { PromptSandbox } from "@/components/sandbox/prompt-sandbox";
+import { CodeSandbox } from "@/components/sandbox/code-sandbox";
 import { CommentSection } from "@/components/comments/comment-section";
 import type { QuizContent, SandboxContent, VideoContent } from "@/types";
 
@@ -185,11 +186,19 @@ export default function LessonPage() {
       )}
 
       {lesson.type === "SANDBOX" && (
-        <PromptSandbox
-          content={lesson.content as unknown as SandboxContent}
-          lessonId={lesson.id}
-          onComplete={(score) => handleComplete(score)}
-        />
+        (lesson.content as unknown as SandboxContent).sandbox_type === "code" ? (
+          <CodeSandbox
+            content={lesson.content as unknown as SandboxContent}
+            lessonId={lesson.id}
+            onComplete={(score) => handleComplete(score)}
+          />
+        ) : (
+          <PromptSandbox
+            content={lesson.content as unknown as SandboxContent}
+            lessonId={lesson.id}
+            onComplete={(score) => handleComplete(score)}
+          />
+        )
       )}
 
       {(lesson.type === "INTERACTIVE" || lesson.type === "MEDIA") && (

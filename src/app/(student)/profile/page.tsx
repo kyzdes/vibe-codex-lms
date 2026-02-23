@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import Image from "next/image";
 import { useSession, signOut } from "next-auth/react";
 import { toast } from "sonner";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -222,9 +223,11 @@ export default function ProfilePage() {
             {/* Avatar */}
             <div className="relative">
               {profile.image ? (
-                <img
+                <Image
                   src={profile.image}
                   alt={profile.name || "Аватар"}
+                  width={96}
+                  height={96}
                   className="h-24 w-24 rounded-full object-cover border-4 border-primary/20"
                 />
               ) : (
